@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import AuthForm from './components/authForm';
 
-function App() {
+const App = () => {
+  const [formType, setFormType] = useState('login');
+
+  const toggleFormType = () => {
+    setFormType(formType === 'login' ? 'signup' : 'login');
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {formType === 'login' ? <h1>Login</h1> : <h1>Sign Up</h1>}
+      <AuthForm type={formType} />
+      <button onClick={toggleFormType}>
+        {formType === 'login' ? 'Switch to Sign Up' : 'Switch to Login'}
+      </button>
     </div>
   );
-}
+};
 
 export default App;
